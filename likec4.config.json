@@ -1,0 +1,9 @@
+{
+  "name": "auth",
+  "federation": {
+    "exports": ["auth"],
+    "publish": {
+      "registryDir": "../likec4-demo-registry"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+specification {
+  element service
+  element component
+  element database
+}
+
+model {
+  service auth 'Identity & Access' {
+    description 'Centralized authentication and authorization'
+
+    component api 'Auth API' {
+      technology 'REST'
+    }
+    component tokens 'Token Service' {
+      technology 'JWT'
+    }
+    database users 'User Store' {
+      technology 'PostgreSQL'
+    }
+  }
+
+  auth.api -> auth.tokens 'validates tokens'
+  auth.api -> auth.users 'queries users'
+  auth.tokens -> auth.users 'reads user roles'
+}
+
+views {
+  view authOverview of auth {
+    title 'Auth Service'
+    include *
+    autoLayout TopBottom
+  }
+}
